@@ -18,7 +18,7 @@ class TodoList extends StatelessWidget {
               "Todo $idx",
               "Description $idx",
               DateTime.now(),
-              true,
+              false,
             ),
           );
         },

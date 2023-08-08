@@ -26,7 +26,11 @@ class TodoCard extends StatelessWidget {
                     children: [
                       Text(
                         todo.title,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          decoration:
+                              todo.isDone ? TextDecoration.lineThrough : null,
+                        ),
                       ),
                       Text(
                         todo.description,
