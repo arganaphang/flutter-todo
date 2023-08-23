@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo/screens/home/home_screen.dart';
 
@@ -12,7 +13,7 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var baseTheme = ThemeData(brightness: Brightness.light);
-    return MaterialApp(
+    return GetMaterialApp(
       theme: baseTheme.copyWith(
         textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme),
         scaffoldBackgroundColor: const Color.fromARGB(255, 241, 241, 241),

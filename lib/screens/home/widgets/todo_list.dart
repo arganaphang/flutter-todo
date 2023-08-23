@@ -3,7 +3,8 @@ import 'package:todo/model/todo.dart';
 import 'package:todo/widgets/todo_card.dart';
 
 class TodoList extends StatelessWidget {
-  const TodoList({super.key});
+  final List<Todo> todos;
+  const TodoList({super.key, required this.todos});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,9 @@ class TodoList extends StatelessWidget {
       child: ListView.separated(
         shrinkWrap: true,
         itemBuilder: (ctx, idx) {
-          return TodoCard(
-            todo: Todo(
-              "1",
-              "Todo $idx",
-              "Description $idx",
-              DateTime.now(),
-              false,
-            ),
-          );
+          return TodoCard(todo: todos[idx]);
         },
-        itemCount: 10,
+        itemCount: todos.length,
         separatorBuilder: (ctx, idx) {
           return const SizedBox(height: 16);
         },

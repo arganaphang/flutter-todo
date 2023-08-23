@@ -6,44 +6,39 @@ class FilterData {
   FilterData({required this.label, required this.count});
 }
 
-final filters = [
-  FilterData(label: "All", count: 5),
-  FilterData(label: "Open", count: 2),
-  FilterData(label: "Closed", count: 3),
-];
-
-class Filter extends StatefulWidget {
-  const Filter({super.key});
-
-  @override
-  State<Filter> createState() => _FilterState();
-}
-
-class _FilterState extends State<Filter> {
-  int _currentIdx = 1;
-
-  void _setCurrentIdx(int idx) {
-    setState(() {
-      _currentIdx = idx;
-    });
-  }
-
+class Filter extends StatelessWidget {
+  final int all, open, closed;
+  final int idx;
+  final Function(int) setIdx;
+  const Filter({
+    super.key,
+    required this.all,
+    required this.open,
+    required this.closed,
+    required this.idx,
+    required this.setIdx,
+  });
   @override
   Widget build(BuildContext context) {
+    final filters = [
+      FilterData(label: "All", count: all),
+      FilterData(label: "Open", count: open),
+      FilterData(label: "Closed", count: closed),
+    ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: SizedBox(
         height: 32,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemBuilder: (ctx, idx) {
+          itemBuilder: (ctx, i) {
             return InkWell(
               onTap: () {
-                _setCurrentIdx(idx);
+                setIdx(i);
               },
               child: FilterItem(
-                data: filters[idx],
-                isActive: idx == _currentIdx,
+                data: filters[i],
+                isActive: i == idx,
               ),
             );
           },
