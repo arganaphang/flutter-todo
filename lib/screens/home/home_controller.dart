@@ -35,6 +35,22 @@ class HomeController extends GetxController {
     update();
   }
 
+  void _updateFilteredTodos(int idx) {
+    final t = todos;
+    switch (idx) {
+      case 1:
+        filteredTodos.value = t.where((x) => !x.isDone).toList();
+        break;
+      case 2:
+        filteredTodos.value = t.where((x) => x.isDone).toList();
+        break;
+      default:
+        filteredTodos.value = t;
+        break;
+    }
+    update();
+  }
+
   void addTodo(String title, String description) {
     todos.add(
       Todo(
@@ -49,19 +65,15 @@ class HomeController extends GetxController {
     update();
   }
 
-  void _updateFilteredTodos(int idx) {
-    final t = todos;
-    switch (idx) {
-      case 1:
-        filteredTodos.value = t.where((x) => !x.isDone).toList();
-        break;
-      case 2:
-        filteredTodos.value = t.where((x) => x.isDone).toList();
-        break;
-      default:
-        filteredTodos.value = t;
-        break;
-    }
+  void toggleTodoByID(String id) {
+    final tmp = todos.map((item) {
+      if (item.id == id) {
+        item.isDone = !item.isDone;
+      }
+      return item;
+    }).toList();
+    todos.value = tmp;
+    _updateFilteredTodos(filterIdx.value);
     update();
   }
 }

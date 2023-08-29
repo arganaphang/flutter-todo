@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: TodoList(
                       todos: controller.filteredTodos.reversed.toList(),
+                      toggle: controller.toggleTodoByID,
                     ),
                   ),
                 ],

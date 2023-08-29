@@ -3,7 +3,7 @@ class Todo {
   final String title;
   final String description;
   final DateTime createdAt;
-  final bool isDone;
+  bool isDone;
 
   Todo(
     this.id,
